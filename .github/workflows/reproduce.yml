@@ -1,0 +1,48 @@
+name: reproduce
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    name: anyOf with exists branches must be denied on write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - run: npm run typecheck
+
+      - name: run the repro and assert the verdict
+        shell: bash
+        run: |
+          set +e
+          out="$(npm run repro --silent 2>&1)"
+          code=$?
+          echo "$out"
+          echo "repro exit code: $code"
+
+          if [ "$code" -ne 0 ]; then
+            echo "repro script crashed, check the log"
+            exit 1
+          fi
+
+          if echo "$out" | grep -q "VERDICT: BROKEN"; then
+            echo "still reproduces"
+            exit 0
+          fi
+
+          if echo "$out" | grep -q "VERDICT: WORKS"; then
+            echo "bug is gone (fixed in jazz-tools?)"
+            exit 1
+          fi
+
+          echo "no verdict line, check the log"
+          exit 1

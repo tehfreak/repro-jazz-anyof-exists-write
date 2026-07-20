@@ -1,0 +1,15 @@
+{
+  "include": ["repro.ts"],
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}

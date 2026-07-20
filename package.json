@@ -1,0 +1,21 @@
+{
+  "name": "repro-jazz-anyof-exists-write",
+  "private": true,
+  "version": "0.0.0",
+  "description": "repro: anyOf(...) with exists branches is evaluated as allOf(...) on the jazz write path",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "repro": "node repro.ts"
+  },
+  "dependencies": {
+    "jazz-tools": "2.0.0-alpha.53"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.5",
+    "typescript": "5.9.3"
+  }
+}
