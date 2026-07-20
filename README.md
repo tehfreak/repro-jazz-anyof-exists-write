@@ -6,8 +6,9 @@ branch gets denied unless every other branch's `exists` also holds.
 
 ## Status
 
-Reproduced against `jazz-tools@2.0.0-alpha.53` (native `jazz-napi@2.0.0-alpha.53`). Not reported
-upstream yet.
+Reproduced against `jazz-tools@2.0.0-alpha.53` (native `jazz-napi@2.0.0-alpha.53`).
+
+- Issue: https://github.com/garden-co/jazz/issues/1104
 
 ## What happens
 
