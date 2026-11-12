@@ -6,9 +6,14 @@ branch gets denied unless every other branch's `exists` also holds.
 
 ## Status
 
-Reproduced against `jazz-tools@2.0.0-alpha.53` (native `jazz-napi@2.0.0-alpha.53`).
+Fixed upstream. https://github.com/garden-co/jazz/issues/1104 was closed on 2026-08-24, and the
+maintainer confirmed the fix for `jazz-tools@2.0.0-alpha.54`.
 
-- Issue: https://github.com/garden-co/jazz/issues/1104
+The repro stays pinned to `jazz-tools@2.0.0-alpha.53` (native `jazz-napi@2.0.0-alpha.53`), where it
+still prints BROKEN. It does not run unchanged on newer versions. From alpha.54 the server rejects
+an `exists` that is not tied to the inserted row, and the seed and write APIs changed. The same four
+cases, with each `exists` matched against a column of the inserted row, print BROKEN on alpha.53 and
+WORKS on alpha.60. Checked on 2026-11-12.
 
 ## What happens
 
